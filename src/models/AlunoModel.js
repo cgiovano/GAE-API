@@ -1,19 +1,11 @@
 const {DataTypes} = require('sequelize');
 const database = require('../dbconfig.js');
 
-const Aluno = database.define('aluno', {
+const Aluno = database.define('Aluno', {
     id: { 
         type: DataTypes.INTEGER,
         primaryKey: true, 
         autoIncrement: true
-    }, 
-    id_turma: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'turma', 
-            referencesKey: 'id'
-        }
     }, 
     nome: {
         type: DataTypes.STRING,

@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const database = require('../dbconfig.js');
 
-const Turma = database.define('turma', {
+const Turma = database.define('Turma', {
     id: { 
         type: DataTypes.INTEGER,
         primaryKey: true, 
@@ -11,9 +11,17 @@ const Turma = database.define('turma', {
         type: DataTypes.STRING,
         allowNull: false
     }, 
-    ano: {
+    serie: {
+        type: DataTypes.STRING, 
+        allowNull: false
+    }, 
+    ano_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: 'AnoLetivo',
+            key: 'id'
+        }
     }
 }, {
     tableName: "turma", 

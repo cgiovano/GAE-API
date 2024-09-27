@@ -16,7 +16,7 @@ module.exports = {
         const {id} = req.params;
 
         try {
-            turma = TurmaModel.findByPk(id);
+            const turma = await TurmaModel.findByPk(id);
 
             if(turma){
                 return(res.status(201).json(turma))
@@ -24,18 +24,18 @@ module.exports = {
                 console.log("Objeto não encontrado");
                 res.json( { message: "Objeto não encontrado" } )
             }
-            res.end();
         } catch (error) {
             
         }
     },
     async Criar(req, res) {
-        const {identificacao, ano} = req.body;
-        console.log(JSON.stringify(req.body));
+        const {identificacao, serie, ano_id} = req.body;
+        console.log(req.body);
 
         try {
-            const turma = await TurmaModel.create({identificacao, ano});
-            res.status(200).json(turma);
+            const turma = await TurmaModel.create({identificacao: identificacao, serie: serie, ano_id: ano_id});
+            console.log(turma);
+            return(res.status(201).json(turma));
         } catch (error) {
             console.log(error);
             res.status(500).json({message: "Erro interno do servidor"});
@@ -43,16 +43,17 @@ module.exports = {
     },
     async Atualizar(req, res) {
         const {id} = req.params;
-        const {identificacao, ano} = req.body;
+        const {identificacao, serie, ano_id} = req.body;
+        console.log(req.body);
 
         try {
-            const turma = await TurmaModel.findByPk(id);
+            let turma = await TurmaModel.findByPk(id);
             if (turma) {
-                turma = await turma.update({identificacao: identificacao, ano: ano});
-                res.status(201).json(turma);
-                res.end;
+                turma = await turma.update({identificacao: identificacao, serie: serie, ano_id: ano_id});
+                console.log(turma);
+                return(res.status(201).json(turma));
             } else {
-                req.status(500).json({message: "Erro! Falha ao atualizar."});
+                return(req.status(500).json({message: "Erro! Falha ao atualizar."}));
             }
         } catch (error) {
             console.log(error);
@@ -66,7 +67,10 @@ module.exports = {
             const turma = await TurmaModel.findByPk(id);
 
             if(turma) {
-                await turma.destroy({where: {id: id}}).then(res.status(201)).catch(res.status(500).json({message: "Erro ao deletar o objeto!"}));
+                await turma.destroy();
+                return(res.status(201).json({message: "Objeto deletado com sucesso"}))
+            } else {
+                return(res.status(400).json({message: "Erro no processamento da requisição"}));
             }
             
         } catch (error) {

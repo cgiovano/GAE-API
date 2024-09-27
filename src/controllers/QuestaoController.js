@@ -5,7 +5,6 @@ module.exports = {
         try {
             const questao = QuestaoModel.findAll();
             return(res.status(201).json(questao));
-            res.end();
         } catch (error) {
             res.status(500).send({message: "Erro interno do servidor."});
         }

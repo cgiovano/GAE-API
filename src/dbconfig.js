@@ -6,7 +6,8 @@ const db = new Sequelize({
   password: '6EAGLEviolao',
   host: 'localhost',
   port: 5432,
-  dialect: 'postgres'
+  dialect: 'postgres', 
+  logging: console.log
 });
 
 // Testar conexão com o banco de dados

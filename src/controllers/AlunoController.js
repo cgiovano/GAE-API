@@ -3,20 +3,20 @@ const AlunoModel = require('../models/AlunoModel.js');
 module.exports = {
     async Listar(req, res) {
         try {
-            res.json({message: req.params});
             const alunos = await AlunoModel.findAll();
+            //res.json(alunos);
             return (res.json(alunos));
         } catch (error) {
             console.log(error);
-            res.status(500).json( {message: "Erro interno no servidor."} );
+            //res.status(500).json( {message: "Erro interno no servidor."} );
         }  
     },
 
     async Criar(req, res) {
-        const {id_turma, nome} = req.body;
+        const {nome} = req.body;
   
         try {
-            const aluno = await AlunoModel.create( {id_turma, nome} );
+            const aluno = await AlunoModel.create( {nome: nome} );
             return(res.status(201).json(aluno));
         }catch (error) {
             console.log(error);
@@ -25,7 +25,8 @@ module.exports = {
     }, 
 
     async ObterItem(req, res) {
-        let id = req.params;
+        let id = req.params.id;
+        console.log(req.params);
 
         try {
             const aluno = await AlunoModel.findByPk(id);
@@ -40,13 +41,13 @@ module.exports = {
     },
 
     async Atualizar(req, res) {
-        let id = req.params;
-        const {turma, nome} = req.body;
+        let id = req.params.id;
+        const {nome} = req.body;
 
         try {
             let aluno = await AlunoModel.findByPk(id);
             if(aluno) {
-                aluno = aluno.update( {turma: turma, nome: nome} );
+                aluno = await aluno.update( {nome: nome} );
                 return(res.status(200).json(aluno));
             } else {
                 return(res.status(500).json( {message: "Não foi possível atualizar. Objeto não encontrado!"} ));
@@ -59,12 +60,13 @@ module.exports = {
     }, 
 
     async Deletar(req, res) {
-        let id = req.params;
+        let {id} = req.params
+        console.log(req.params);
 
         try{
-            const aluno = AlunoModel.findByPk(id)
+            const aluno = await AlunoModel.findByPk(id)
             if(aluno) {
-                await AlunoModel.destroy({where: {id: id}});
+                aluno.destroy();
                 return res.status(200).json({message: "objeto deletado com sucesso!"});
             }
             else {
