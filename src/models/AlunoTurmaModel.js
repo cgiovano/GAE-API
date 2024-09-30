@@ -4,14 +4,24 @@ const { DataTypes, INTEGER } = require('sequelize');
 const AlunoTurma = database.define('AlunoTurma', {
     id_turma: {
         type: INTEGER, 
-        references: 'Turma',
-        referenceKey: 'id'
+        primaryKey: true,
+        references: {
+            model: 'Turma',
+            Key: 'id'
+        }
     }, 
     id_aluno: {
         type: INTEGER, 
-        references: 'Aluno', 
-        referenceKey: 'id'
+        primaryKey: true,
+        references: {
+            model: 'Aluno', 
+            Key: 'id'
+        }
     }
+},  {
+    tableName: 'aluno_turma', 
+    timestamps: false, 
+    freezeTableName: true
 });
 
 module.exports = AlunoTurma;
