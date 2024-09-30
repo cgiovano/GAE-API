@@ -13,6 +13,7 @@ const criterioRouter = require('./src/routes/CriterioRouter.js');
 const criterioQuestaoRouter = require('./src/routes/CriteriosQuestaoRouter.js');
 const questaoRouter = require('./src/routes/QuestaoRouter.js');
 const anoLetivoRouter = require('./src/routes/AnoLetivoRouter.js');
+const alunoTurmaRouter = require('./src/routes/AlunoTurmaRouter.js');
 
 const app = express();
 const PORT = 3000;
@@ -30,6 +31,7 @@ app.use('/criterio', criterioRouter);
 app.use('/criterioQuestao', criterioQuestaoRouter);
 app.use('/questao', questaoRouter);
 app.use('/ano-letivo', anoLetivoRouter);
+app.use('/aluno-turma', alunoTurmaRouter);
 
 
 app.listen(PORT, async () => {
