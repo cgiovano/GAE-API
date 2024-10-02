@@ -13,11 +13,14 @@ module.exports = {
     }, 
 
     async ObterItem(req, res) {
-        const idTurma = req.query.idTurma;
-        const idAluno = req.query.idAluno;
+        const id_turma = req.query.id_turma;
+        const id_aluno = req.query.id_aluno;
+
+        console.log(id_turma);
+        console.log(id_aluno);
 
         try {
-            const registro = await AlunoTurmaModel.findOne({where: {id_turma: idTurma, id_aluno: idAluno}});
+            const registro = await AlunoTurmaModel.findOne({where: {id_turma: id_turma, id_aluno: id_aluno}});
 
             if(registro) {
                 return(res.status(200).json(registro));
@@ -89,9 +92,8 @@ module.exports = {
     }, 
 
     async Deletar(req, res) {
-        const id_turma = req.query.id_turma;
-        const id_aluno = req.query.id_aluno;
-
+        const {id_turma, id_aluno} = req.query;
+        
         try {
             const registro = await AlunoTurmaModel.findOne({where: {id_turma: id_turma, id_aluno: id_aluno}});
             registro.destroy();
