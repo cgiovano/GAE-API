@@ -22,6 +22,9 @@ const ItemCriterio = database.define('ItemCriterio', {
         type: DataTypes.FLOAT, 
         allowNull: false
     }
+}, {
+    modelName: 'item_criterio', 
+    timestamps: false
 });
 
 module.exports = ItemCriterio;
