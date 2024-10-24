@@ -3,8 +3,8 @@ const router = express.Router();
 const criterioController = require('../controllers/CriterioController');
 
 router.get('/', criterioController.Listar);
-router.get('/', criterioController.ObterItem);
-router.post('/', criterioController.Criar);
+router.get('/:id', criterioController.ObterItem);
+router.post('/cadastrar/', criterioController.Criar);
 router.put('/:id', criterioController.Atualizar);
 router.delete('/:id', criterioController.Deletar);
 

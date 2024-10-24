@@ -12,9 +12,10 @@ module.exports = {
 
     async ObterItem(req, res) {
         const {id} = req.params;
+        console.log(id);
 
         try {
-            criterio = await CriterioModel.findByPk(id);
+            const criterio = await CriterioModel.findByPk(id);
 
             if(criterio) {
                 return (res.status(201).json(criterio));
@@ -22,18 +23,19 @@ module.exports = {
                 return (res.status(500).json("Erro. Não foi possível encontrar o item."));
             }
         } catch (error) {
-            console.loog(error);
-            res.status(500).json({message: "Erro interno de servidor."});
+            res.status(500).json({message: "Erro interno de servidor." + error});
         }
     }, 
 
     async Criar(req, res) {
-        const {descricao, valor} = req.body;
+        const {descricao, pontuacao, isLikert} = req.body;
+        console.log(isLikert);
+
         try {
-            const criterio = await CriterioModel.create({descricao: descricao, valor: valor});
+            const criterio = await CriterioModel.create({descricao: descricao, pontuacao: pontuacao, likert_scale: isLikert});
             return (res.status(201).json(criterio));
         } catch (error) {
-            res.status(500).json({message: "Erro interno do servidor."});
+            res.status(500).json({message: "Erro interno do servidor." + error});
         }
     }, 
 
@@ -60,7 +62,7 @@ module.exports = {
         const {id} = req.params;
 
         try {
-            const criterio = await CriterioModel.findbyPk(id);
+            const criterio = await CriterioModel.findByPk(id);
 
             if(criterio) {
                 await CriterioModel.destroy({where: {id: id}});

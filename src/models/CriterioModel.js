@@ -11,10 +11,17 @@ const Criterio = database.define('Criterio', {
         type: DataTypes.STRING,
         allowNull: false
     }, 
-    valor: {
-        type: DataTypes.FLOAT, 
+    pontuacao: {
+        type: DataTypes.INTEGER, 
+        allowNull: false
+    }, 
+    likert_scale: {
+        type: DataTypes.BOOLEAN, 
         allowNull: false
     }
+}, {
+    tableName: 'criterio', 
+    timestamps: false
 });
 
 module.exports = Criterio;

@@ -18,12 +18,12 @@ const ItemCriterio = database.define('ItemCriterio', {
         type: DataTypes.STRING, 
         allowNull: false
     }, 
-    valor: {
-        type: DataTypes.FLOAT, 
+    ordem: {
+        type: DataTypes.INTEGER, 
         allowNull: false
     }
 }, {
-    modelName: 'item_criterio', 
+    tableName: 'item_criterio', 
     timestamps: false
 });
 
