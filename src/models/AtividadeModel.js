@@ -11,18 +11,25 @@ const Atividade = database.define('Atividade', {
         type: DataTypes.STRING,
         allowNull: true
     },
-    data_criacao: {
-        type: DataTypes.DATE,
+    data_inicio: {
+        type: DataTypes.STRING,
         allowNull: true
     },
-    data_entrega: {
-        type: DataTypes.DATE,
+    data_fim: {
+        type: DataTypes.STRING,
         allowNull: true
     },
     valor: {
         type: DataTypes.INTEGER,
         allowNull: true
+    }, 
+    numero_questoes: {
+        type: DataTypes.INTEGER, 
+        allowNull: true
     }
+}, {
+    tableName: 'atividade', 
+    timestamps: false
 });
 
 module.exports = Atividade;
