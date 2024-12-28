@@ -29,7 +29,7 @@ app.use('/atividade', atividadeRouter);
 app.use('/correcaoQuestao', correcaoQuestaoRouter);
 app.use('/correcao', correcaoRouter);
 app.use('/criterio', criterioRouter);
-app.use('/criterioQuestao', criterioQuestaoRouter);
+app.use('/criterio-questao', criterioQuestaoRouter);
 app.use('/questao', questaoRouter);
 app.use('/ano-letivo', anoLetivoRouter);
 app.use('/aluno-turma', alunoTurmaRouter);
