@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     }
 });
 
-router.post('/cadastrar/', alunoTurmaController.Criar);
-router.delete('/deletar/', alunoTurmaController.Deletar);
+router.post('/', alunoTurmaController.Criar);
+router.delete('/', alunoTurmaController.Deletar);
 
 module.exports = router;

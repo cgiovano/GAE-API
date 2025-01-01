@@ -3,7 +3,7 @@ const router = express.Router();
 const itemCriterioController = require('../controllers/ItemCriterioController.js');
 
 router.get('/', itemCriterioController.Obter);
-router.post('/cadastrar/', itemCriterioController.Criar);
+router.post('/', itemCriterioController.Criar);
 router.put('/:id', itemCriterioController.Atualizar);
 router.delete('/:id', itemCriterioController.Deletar);
 
