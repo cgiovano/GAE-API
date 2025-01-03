@@ -14,7 +14,7 @@ const CriteriosQuestao = database.define('CriteriosQuestao', {
     }, 
     id_criterio: {
         type: DataTypes.INTEGER, 
-        references: 'Atividade', 
+        references: 'Criterio', 
         referenceKey: 'id'
     }
 });

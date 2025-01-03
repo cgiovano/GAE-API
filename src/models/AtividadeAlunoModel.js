@@ -17,6 +17,9 @@ const AtividadeAluno = database.define('AtividadeAluno', {
         references: 'Atividade',
         referenceKey: 'id'
     }
+},  {
+    tableName: 'atividade_aluno',
+    timestamps: false
 });
 
 module.exports = AtividadeAluno;
