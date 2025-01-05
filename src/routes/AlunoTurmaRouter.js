@@ -8,10 +8,10 @@ router.get('/:id', alunoTurmaController.ObterAlunosPorTurma);
 router.get('/', (req, res, next) => {
     const {id_turma, id_aluno} = req.query;
 
-    if(id_turma && id_aluno) {
+    if(id_turma != undefined && id_aluno != undefined) {
         alunoTurmaController.ObterItem(req, res);
-    } else {
-        alunoTurmaController.Obter(req, res);
+    } else if (id_turma != undefined){
+        alunoTurmaController.ObterAlunosPorTurma(req, res);
     }
 });
 

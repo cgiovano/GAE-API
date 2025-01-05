@@ -11,7 +11,7 @@ const Criterio = database.define('Criterio', {
         type: DataTypes.STRING,
         allowNull: false
     }, 
-    pontuacao: {
+    numero_criterios: {
         type: DataTypes.INTEGER, 
         allowNull: false
     }, 

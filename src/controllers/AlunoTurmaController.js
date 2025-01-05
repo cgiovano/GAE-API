@@ -33,7 +33,7 @@ module.exports = {
     },
 
     async ObterAlunosPorTurma(req, res) {
-        const id_turma = req.params.id;
+        const id_turma = req.query.id_turma;
 
         try {
             const alunosTurma = await AlunoTurmaModel.findAll({where: {id_turma: id_turma}});
@@ -64,7 +64,7 @@ module.exports = {
             const alunosSemTurma = await AlunoModel.findAll({where: {id: {[Op.notIn]: alunosIds}}});
             console.log(alunosSemTurma);
 
-            if(alunosTurma) {
+            if(alunosSemTurma) {
                 return(res.status(201).json(alunosSemTurma));
             } else {
                 return(res.status(401).json({message: "Erro no processamento da requisição"}));
@@ -93,6 +93,7 @@ module.exports = {
 
     async Deletar(req, res) {
         const {id_turma, id_aluno} = req.query;
+        console.log(req.query);
         
         try {
             const registro = await AlunoTurmaModel.findOne({where: {id_turma: id_turma, id_aluno: id_aluno}});
