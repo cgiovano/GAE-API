@@ -1,9 +1,12 @@
+const { query } = require("express");
 const QuestaoModel = require("../models/QuestaoModel");
 
 module.exports = {
     async Listar(req, res) {
+        const id_atividade = req.query.id_atividade;
+
         try {
-            const questao = QuestaoModel.findAll();
+            const questao = await QuestaoModel.findAll({where: {id_atividade: id_atividade}});
             return(res.status(201).json(questao));
         } catch (error) {
             res.status(500).send({message: "Erro interno do servidor."});
@@ -14,7 +17,7 @@ module.exports = {
         const {id} = req.params;
 
         try {
-            const questao = QuestaoModel.findByPk(id);
+            const questao = await QuestaoModel.findByPk(id);
 
             if(questao) {
                 return (res.status(201).json(questao));
@@ -26,18 +29,32 @@ module.exports = {
     }, 
 
     async Criar(req, res) {
-        const {id_atividade, descricao, valor} = req.body;
 
-        try {
-            const questao = await QuestaoModel.create({
-                id_atividade: id_atividade, 
-                descricao: descricao, 
-                valor: valor
-            });
-            res.status(201).json(questao);
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({message: "Erro interno do servidor."});
+        if(!Array.isArray(req.body)) {
+            const {id_atividade, descricao, valor} = req.body;
+
+            try {
+                const questao = await QuestaoModel.create({
+                    id_atividade: id_atividade, 
+                    descricao: descricao, 
+                    valor: valor
+                });
+                res.status(201).json(questao);
+            } catch (error) {
+                console.log(error);
+                res.status(500).json({message: "Erro interno do servidor."});
+            }
+        } else {
+            console.log("registro do tipo array/bulk")
+            const dados = req.body;
+
+            try {
+                const questoes = await QuestaoModel.bulkCreate(dados);
+                res.status(201).json(questoes);
+            } catch (error) {
+                console.log(error);
+                res.status(500).json({message: "Erro interno do servidor."});
+            }
         }
     }, 
 
@@ -46,7 +63,7 @@ module.exports = {
         const { id_atividade, descricao, valor } = req.body
 
         try {
-            const questao = QuestaoModel.findByPk(id);
+            const questao = await QuestaoModel.findByPk(id);
 
             if(questao) {
                 questao = await questao.update({id_atividade: id_atividade, descricao: descricao, valor: valor});

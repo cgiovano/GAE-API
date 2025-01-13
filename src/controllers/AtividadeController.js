@@ -13,8 +13,9 @@ module.exports = {
 
     async ObterItem(req, res) {
         const {id} = req.params;
+
         try {
-            const atividade = await AtividadeModel.findkByPk(id);
+            const atividade = await AtividadeModel.findByPk(id);
 
             if(atividade) {
                 return (res.status(201).json(atividade));

@@ -29,7 +29,6 @@ module.exports = {
 
     async Criar(req, res) {
         const {descricao, numero_criterios, isLikert} = req.body;
-        console.log(isLikert);
 
         try {
             const criterio = await CriterioModel.create({descricao: descricao, numero_criterios: numero_criterios, likert_scale: isLikert});

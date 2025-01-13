@@ -18,8 +18,8 @@ const ItemCriterio = database.define('ItemCriterio', {
         type: DataTypes.STRING, 
         allowNull: false
     }, 
-    ordem: {
-        type: DataTypes.INTEGER, 
+    valor: {
+        type: DataTypes.FLOAT, 
         allowNull: false
     }
 }, {

@@ -21,6 +21,9 @@ const Questao = database.define('Questao', {
         type: DataTypes.FLOAT,
         allowNull: false
     }
+}, {
+    tableName: 'questao',
+    timestamps: false
 });
 
 module.exports = Questao;
