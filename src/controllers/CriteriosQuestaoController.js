@@ -30,10 +30,10 @@ module.exports = {
     }, 
 
     async Criar(req, res) {
-        const {id_questao, id_atividade, id_criterio} = req.body;
+        const {id_questao, id_criterio} = req.body;
 
         try {
-            const criterio_questao = await CriteriosQuestaoModel.create({id_questao, id_atividade, id_criterio});
+            const criterio_questao = await CriteriosQuestaoModel.create({id_questao, id_criterio});
             return (res.status(201).json(criterio_questao));
 
         } catch (error) {
@@ -43,11 +43,11 @@ module.exports = {
 
     //Só precisa atualizar, efetivamente, o id_criterio
     async Atualizar(req, res) {
-        const {id_questao, id_atividade, id_criterio, novo_id_criterio} = req.body;
+        const {id_questao, id_criterio, novo_id_criterio} = req.body;
 
         try {
-            if(id_questao != null && id_atividade != null) {
-                const criterio_questao = await CriteriosQuestaoModel.findOne({where: {id_questao: id_questao, id_atividade: id_atividade, id_criterio: id_criterio}});
+            if(id_questao != null) {
+                const criterio_questao = await CriteriosQuestaoModel.findOne({where: {id_questao: id_questao, id_criterio: id_criterio}});
 
                 if(criterio_questao) {
                     await criterio_questao.update({id_criterio: novo_id_criterio});
@@ -62,11 +62,11 @@ module.exports = {
     }, 
 
     async Deletar(req, res) {
-        const {id_questao, id_atividade, id_criterio} = req.body;
+        const {id_questao, id_criterio} = req.body;
 
         try {
             if(id_questao != null && id_atividade != null && id_criterio) {
-                const criterio_questao = await CriteriosQuestaoModel.findOne({where: {id_questao: id_questao, id_atividade: id_atividade, id_criterio: id_criterio}});
+                const criterio_questao = await CriteriosQuestaoModel.findOne({where: {id_questao: id_questao, id_criterio: id_criterio}});
 
                 if(criterio_questao) {
                     await criterio_questao.destroy();

@@ -5,7 +5,7 @@ const criterioQuestaoController = require('../controllers/CriteriosQuestaoContro
 router.get('/', criterioQuestaoController.Listar);
 router.get('/', criterioQuestaoController.ObterItem);
 router.post('/', criterioQuestaoController.Criar);
-router.put('/:id', criterioQuestaoController.Atualizar);
+router.put('/', criterioQuestaoController.Atualizar);
 router.delete('/:id', criterioQuestaoController.Deletar);
 
 module.exports = router;

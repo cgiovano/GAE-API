@@ -31,7 +31,7 @@ module.exports = {
         const {descricao, data_inicio, data_fim, valor, numero_questoes} = req.body;
 
         try {
-            const atividade = AtividadeModel.create({descricao: descricao, data_inicio: data_inicio, data_fim: data_fim, valor: valor, numero_questoes: numero_questoes});
+            const atividade = await AtividadeModel.create({descricao: descricao, data_inicio: data_inicio, data_fim: data_fim, valor: valor, numero_questoes: numero_questoes});
             return (res.status(201).json(atividade));
         } catch (error) {
             res.status(500).json({message: "Erro interno do servidor."});
