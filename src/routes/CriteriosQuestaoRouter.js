@@ -6,6 +6,6 @@ router.get('/', criterioQuestaoController.Listar);
 router.get('/', criterioQuestaoController.ObterItem);
 router.post('/', criterioQuestaoController.Criar);
 router.put('/', criterioQuestaoController.Atualizar);
-router.delete('/:id', criterioQuestaoController.Deletar);
+router.delete('/', criterioQuestaoController.Deletar);
 
 module.exports = router;

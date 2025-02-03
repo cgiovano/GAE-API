@@ -63,7 +63,7 @@ module.exports = {
         const { id_atividade, descricao, valor } = req.body
 
         try {
-            const questao = await QuestaoModel.findByPk(id);
+            let questao = await QuestaoModel.findByPk(id);
 
             if(questao) {
                 questao = await questao.update({id_atividade: id_atividade, descricao: descricao, valor: valor});
