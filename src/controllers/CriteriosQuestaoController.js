@@ -1,21 +1,27 @@
 const CriteriosQuestaoModel = require("../models/CriteriosQuestaoModel");
+const CriterioModel = require("../models/CriterioModel");
 
 module.exports = {
-    async ListarPorAtividade(req, res) {
+    async ListarCriterioPorQuestao(req, res) {
         //Precisa mudar a forma de obter os criterio para também obter por atividade!
-        const id_atividade = req.query.id_atividade;
-
+        const {id} = req.params;
+        console.log(id);
         try {
-            const criterio_questao = await CriteriosQuestaoModel.findAll({ where: { id_atividade: id_atividade} });
+            const criterio_questao = await CriteriosQuestaoModel.findAll({ where: { id_questao: id} });
+            console.log(criterio_questao);
+            const criteriosIds = criterio_questao.map(cq => cq.id_criterio);
+            console.log(criteriosIds);
+            
             if (criterio_questao) {
-                return (res.status(201).json(criterio_questao));
+                const criterios = await CriterioModel.findAll({where: {id: criteriosIds}});
+                return (res.status(201).json(criterios));
             } else {
                 return(res.status(401).json({message: "não existem itens registrados para a questão"}));
             } 
             
 
         } catch (error) {
-            res.status(500).json({ messaghe: "Erro interno do servidor" });
+            res.status(500).json({ message: "Erro interno do servidor" });
         }
     },
 

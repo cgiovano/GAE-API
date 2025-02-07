@@ -18,14 +18,6 @@ const CriteriosQuestao = database.define('CriteriosQuestao', {
             model: 'Criterio', 
             key: 'id'
         }
-    },
-    id_atividade: {
-        type: DataTypes.INTEGER,
-        primaryKey: true, 
-        references: {
-            model: 'Atividade',
-            key: 'id'
-        }
     }
 }, {
     tableName: 'criterio_questao',
