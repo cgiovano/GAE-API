@@ -5,7 +5,7 @@ module.exports = {
     async ListarCriterioPorQuestao(req, res) {
         //Precisa mudar a forma de obter os criterio para também obter por atividade!
         const {id} = req.params;
-        console.log(id);
+        console.log(id  );
         try {
             const criterio_questao = await CriteriosQuestaoModel.findAll({ where: { id_questao: id} });
             console.log(criterio_questao);
@@ -27,10 +27,14 @@ module.exports = {
 
     async ObterItem(req, res) {
         const id_questao = req.query.id_questao;
+        const id_atividade = req.query.id_atividade;
 
         try {
-            if (id_questao != null) {
+            if (id_questao != undefined) {
                 const criterio_questao = await CriteriosQuestaoModel.findAll({ where: { id_questao: id_questao } });
+                return (res.status(201).json(criterio_questao));
+            } else if(id_atividade != undefined) {
+                const criterio_questao = await CriteriosQuestaoModel.findAll({where: {id_atividade: id_atividade}});
                 return (res.status(201).json(criterio_questao));
             }
 
