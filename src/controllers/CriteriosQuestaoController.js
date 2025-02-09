@@ -5,7 +5,7 @@ module.exports = {
     async ListarCriterioPorQuestao(req, res) {
         //Precisa mudar a forma de obter os criterio para também obter por atividade!
         const {id} = req.params;
-        console.log(id  );
+        console.log(id);
         try {
             const criterio_questao = await CriteriosQuestaoModel.findAll({ where: { id_questao: id} });
             console.log(criterio_questao);
