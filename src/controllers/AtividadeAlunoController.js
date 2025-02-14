@@ -41,10 +41,10 @@ module.exports = {
     },
 
     async Criar(req, res) {
-        const {id_atividade, id_aluno, id_turma} = req.body;
+        const {id_atividade, id_aluno} = req.body;
 
         try {
-            const atividadeAluno = AtividadeAlunoModel.create({id_atividade: id_atividade, id_aluno: id_aluno, id_turma: id_turma});
+            const atividadeAluno = AtividadeAlunoModel.create({id_atividade: id_atividade, id_aluno: id_aluno});
             return (res.status(201).json(atividadeAluno));
         } catch (error) {
             res.status(500).json({message: "Erro interno do servidor."});

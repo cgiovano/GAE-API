@@ -11,11 +11,6 @@ const AtividadeAluno = database.define('AtividadeAluno', {
         type: DataTypes.INTEGER, 
         references: 'Aluno',
         referenceKey: 'id'
-    }, 
-    id_turma: {
-        type: DataTypes.INTEGER, 
-        references: 'Atividade',
-        referenceKey: 'id'
     }
 },  {
     tableName: 'atividade_aluno',
