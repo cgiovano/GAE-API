@@ -24,7 +24,7 @@ app.use(cors());
 
 app.use('/aluno', alunoRouter);
 app.use('/turma', turmaRouter);
-app.use('/atividadeAluno', atividadeAlunoRouter);
+app.use('/atividade-aluno', atividadeAlunoRouter);
 app.use('/atividade', atividadeRouter);
 app.use('/correcaoQuestao', correcaoQuestaoRouter);
 app.use('/correcao', correcaoRouter);

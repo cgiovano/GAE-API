@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const atividadeController = require('../controllers/AtividadeController');
+const atividadeAlunoController = require('../controllers/AtividadeAlunoController');
 
-router.get('/', atividadeController.Listar);
-router.get('/:id', atividadeController.ObterItem);
-router.post('/', atividadeController.Criar);
-router.put('/:id', atividadeController.Atualizar);
-router.delete('/:id', atividadeController.Deletar);
+//router.get('/', atividadeAlunoController.Listar);
+router.get('/', atividadeAlunoController.ListarAssociacao);
+router.post('/', atividadeAlunoController.Criar);
+router.put('/:id', atividadeAlunoController.Atualizar);
+router.delete('/', atividadeAlunoController.Deletar);
 
 module.exports = router;
