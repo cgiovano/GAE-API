@@ -2,15 +2,25 @@ const TurmaModel = require("../models/TurmaModel.js");
 
 module.exports = {
     async Listar(req, res) {
-        try {
-            const turmas = await TurmaModel.findAll();
-            return (res.status(201).json(turmas));
-        } catch (error) {
-            console.log(error);
-            res.json({ message: "Erro interno no servidor!" });
-        }
+        let id_ano = req.query.id_ano;
+        console.log("ano id" + id_ano);
 
-        res.end();
+        if (id_ano) {
+            const turmas = await TurmaModel.findAll({where: {ano_id: id_ano}});
+            if(turmas)
+                return(res.status(201).json(turmas));
+            else
+                return(res.status(400).json({message: "Erro no processamento da requisição"}));
+        } else {
+            try {
+                const turmas = await TurmaModel.findAll();
+                return (res.status(201).json(turmas));
+            } catch (error) {
+                console.log(error);
+                res.json({ message: "Erro interno no servidor!" });
+            }
+            res.end();
+        }
     },
     async ObterItem(req, res) {
         const {id} = req.params;
