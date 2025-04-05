@@ -15,6 +15,7 @@ const questaoRouter = require('./src/routes/QuestaoRouter.js');
 const anoLetivoRouter = require('./src/routes/AnoLetivoRouter.js');
 const alunoTurmaRouter = require('./src/routes/AlunoTurmaRouter.js');
 const itemCriterio = require('./src/routes/ItemCriterioRouter.js');
+const ModelAssociation = require('./src/models/ModelAssociation.js');
 
 const app = express();
 const PORT = 3000;
@@ -34,6 +35,8 @@ app.use('/questao', questaoRouter);
 app.use('/ano-letivo', anoLetivoRouter);
 app.use('/aluno-turma', alunoTurmaRouter);
 app.use('/item-criterio', itemCriterio);
+
+ModelAssociation.Init();
 
 app.listen(PORT, async () => {
   console.log("API started");

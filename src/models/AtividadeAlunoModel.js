@@ -20,7 +20,8 @@ const AtividadeAluno = database.define('AtividadeAluno', {
     }
 },  {
     tableName: 'atividade_aluno',
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
 });
 
 module.exports = AtividadeAluno;

@@ -1,5 +1,8 @@
-const { DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 const database = require('../dbconfig');
+const Aluno = require('./AlunoModel');
+const AtividadeAluno = require('./AtividadeAlunoModel');
+
 
 const Atividade = database.define('Atividade', {
     id: {
@@ -22,14 +25,15 @@ const Atividade = database.define('Atividade', {
     valor: {
         type: DataTypes.INTEGER,
         allowNull: true
-    }, 
+    },
     numero_questoes: {
-        type: DataTypes.INTEGER, 
+        type: DataTypes.INTEGER,
         allowNull: true
     }
 }, {
-    tableName: 'atividade', 
-    timestamps: false
+    tableName: 'atividade',
+    timestamps: false,
+    freezeTableName: true
 });
 
 module.exports = Atividade;

@@ -1,4 +1,6 @@
 const AlunoModel = require('../models/AlunoModel.js');
+const AtividadeAluno = require('../models/AtividadeAlunoModel.js');
+const Atividade = require('../models/AtividadeModel.js');
 
 module.exports = {
     async Listar(req, res) {
@@ -10,6 +12,25 @@ module.exports = {
             console.log(error);
             //res.status(500).json( {message: "Erro interno no servidor."} );
         }  
+    },
+
+    async ListarAlunosPorAtividade(req, res) {
+        let idAtividade = req.params.id;
+        console.log(idAtividade);
+
+        try {
+            let alunosComAtividades = await AlunoModel.findAll({include: {model: Atividade, where: {id: idAtividade}, through: {attributes: []}}});
+
+            console.log(alunosComAtividades);
+            if(alunosComAtividades) {
+                
+                return(res.status(200).json(alunosComAtividades))
+            } else {
+                return(res.status(400).json({message: 'Não foram encontrados alunos com a atividade especificada'}));
+            }
+        } catch(error) {
+            console.log(error);
+        }
     },
 
     async Criar(req, res) {
