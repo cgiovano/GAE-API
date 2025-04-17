@@ -1,5 +1,8 @@
 const { query } = require("express");
 const QuestaoModel = require("../models/QuestaoModel");
+const Atividade = require("../models/AtividadeModel");
+const CorrecaoQuestao = require("../models/CorrecaoQuestaoModel");
+const CorrecaoQuestaoController = require("./CorrecaoQuestaoController");
 
 module.exports = {
     async Listar(req, res) {
@@ -27,7 +30,7 @@ module.exports = {
             res.status(500).send({message: "erro interno do servidor."});
         }
     }, 
-
+    
     async Criar(req, res) {
 
         if(!Array.isArray(req.body)) {

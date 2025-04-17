@@ -15,7 +15,7 @@ const questaoRouter = require('./src/routes/QuestaoRouter.js');
 const anoLetivoRouter = require('./src/routes/AnoLetivoRouter.js');
 const alunoTurmaRouter = require('./src/routes/AlunoTurmaRouter.js');
 const itemCriterio = require('./src/routes/ItemCriterioRouter.js');
-const ModelAssociation = require('./src/models/ModelAssociation.js');
+const ModelAssociation = require('./src/utils/ModelAssociation.js');
 
 const app = express();
 const PORT = 3000;

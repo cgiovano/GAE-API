@@ -1,41 +1,40 @@
 const {DataTypes} = require('sequelize');
 const database = require('../dbconfig.js');
 
-const Correcao = database.define('Correcao', {
+const CorrecaoCriterio = database.define('CorrecaoItemCriterio', {
     id: {
         type: DataTypes.INTEGER, 
         primaryKey: true,
         autoIncrement: true
     }, 
-    id_atividade: {
+    id_correcao_questao: {
         type: DataTypes.INTEGER, 
         allowNull: false,
         references: {
-            model: 'Atividade', 
+            model: 'CorrecaoQuestao', 
             key: 'id'
         }
     }, 
-    id_aluno: {
+    id_item_criterio: {
+        type: DataTypes.INTEGER, 
+        allowNull: true,
+        references: {
+            model: 'ItemCriterio', 
+            key: 'id'
+        }
+    }, 
+    id_criterio: {
         type: DataTypes.INTEGER, 
         allowNull: false,
         references: {
-            model: 'Atividade', 
+            model: 'Criterio',
             key: 'id'
         }
-    }, 
-    /*id_turma: {
-        type: DataTypes.INTEGER, 
-        references: 'Turma', 
-        referenceKey: 'id'
-    },*/ 
-    pontuacao: {
-        type: DataTypes.FLOAT, 
-        allowNull: true
     }
 }, {
-    tableName: 'correcao', 
+    tableName: 'correcao_criterio',
     freezeTableName: true,
     timestamps: false
 });
 
-module.exports = Correcao;
+module.exports = CorrecaoCriterio;

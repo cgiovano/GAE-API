@@ -1,11 +1,10 @@
-const CorrecaoModel = require("../models/CorrecaoModel");
-const CorrecaoService = require("../services/CorrecaoService");
+const CorrecaoCriterioModel = require('../models/CorrecaoCriterioModel');
 
 module.exports = {
     async Listar(req, res) {
         try {
-            const correcoes = await CorrecaoModel.findAll();
-            return (res.status(201).json(correcoes));
+            const correcaoCriterio = await CorrecaoCriterioModel.findAll();
+            return (res.status(201).json(correcaoCriterio));
         } catch (error) {
             console.log(error);
             res.send(500).json({message: "erro interno do servidor."});
@@ -16,10 +15,10 @@ module.exports = {
         const {id} = req.params;
 
         try {   
-            const correcao = await CorrecaoModel.findByPk(id);
+            const correcaoCriterio = await CorrecaoCriterioModel.findByPk(id);
 
-            if(correcao) {
-                return (res.status(201).json(correcao))
+            if(correcaoCriterio) {
+                return (res.status(201).json(correcaoCriterio))
             } else {
                 return (res.status(500).json({message: "Erro. O item não foi encontrado."}));
             }
@@ -30,12 +29,12 @@ module.exports = {
     }, 
 
     async Criar(req, res) {
-        const {id_atividade, id_aluno, id_turma, pontuacao} = req.body;
+        const {id_correcao_questao, id_item_criterio, id_criterio, pontuacao} = req.body;
 
         try {
-            const correcao = await CorrecaoModel.create({id_atividade: id_atividade, id_aluno: id_aluno, id_turma: id_turma, pontuacao: pontuacao});
-            const correcaoCriada = CorrecaoService.criarCorrecao(correcao);
-            return (res.status(201).json(correcao, correcaoCriada));
+            const correcaoCriterio = await CorrecaoCriterioModel.create({id_correcao_questao: id_correcao_questao, id_item_criterio: id_item_criterio, id_criterio: id_criterio, pontuacao: pontuacao});
+            
+            return (res.status(201).json(correcaoCriterio));
         } catch (error) {
             console.log(error);
             res.status(500).json({message: "Erro interno do servidor."});
@@ -44,14 +43,14 @@ module.exports = {
 
     async Atualizar(req, res) {
         const {id} = req.params;
-        const {id_atividade, id_aluno, id_turma, pontuacao} = req.body;
+        const {id_correcao_questao, id_item_criterio, id_criterio, pontuacao} = req.body;
 
         try {
-            const correcao = await CorrecaoModel.findByPk(id);
+            const correcaoCriterio = await CorrecaoCriterioModel.findByPk(id);
 
-            if(correcao) {
-                correcao = await correcao.update({id_atividade: id_atividade, id_aluno: id_aluno, id_turma: id_turma, pontuacao: pontuacao});
-                return (res.status(201).json({correcao}));
+            if(correcaoCriterio) {
+                correcaoCriterio = await CorrecaoCriterioModel.create({id_correcao_questao: id_correcao_questao, id_item_criterio: id_item_criterio, id_criterio: id_criterio, pontuacao: pontuacao});
+                return (res.status(201).json({correcaoCriterio}));
             } else {
                 return (res.status(500).json({message: "Erro. O item não foi encontrado."}));
             }
@@ -64,10 +63,10 @@ module.exports = {
         const {id} = req.params;
 
         try {
-            const correcao = await CorrecaoModel.findByPk(id);
+            const correcaoCriterio = await CorrecaoCriterioModel.findByPk(id);
 
-            if(correcao) {
-                await CorrecaoModel.destroy({where: {id: id}});
+            if(correcaoCriterio) {
+                await CorrecaoCriterioModel.destroy({where: {id: id}});
                 return (res.status(201).json({message: "Item deletado."}));
             } else {
                 return (res.status(500).json({message: "Item não encontrado."}));

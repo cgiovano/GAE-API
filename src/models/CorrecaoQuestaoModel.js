@@ -7,25 +7,26 @@ const CorrecaoQuestao = database.define('CorrecaoQuestao', {
         primaryKey: true, 
         autoIncrement: true
     }, 
-    id_questao: {
-        type: DataTypes.INTEGER, 
-        references: 'Questao', 
-        referenceKey: 'id'
-    }, 
-    id_atividade: {
+    /*id_atividade: {
         type: DataTypes.INTEGER, 
         references: 'Atividade', 
         referenceKey: 'id'
-    }, 
-    id_criterio: {
-        type: DataTypes.INTEGER, 
-        references: 'Criterios', 
-        referenceKey: 'id'
-    },  
+    },*/ 
     id_correcao: {
         type: DataTypes.INTEGER, 
-        references: 'Correcao', 
-        referenceKey: 'id'
+        allowNull: false,
+        references: {
+            model: 'Correcao', 
+            key: 'id'
+        }
+    }, 
+    id_questao: {
+        type: DataTypes.INTEGER, 
+        allowNull: false,
+        references: {
+            model: 'Questao', 
+            key: 'id'
+        }
     }, 
     pontuacao: {
         type: DataTypes.FLOAT, 
@@ -35,6 +36,10 @@ const CorrecaoQuestao = database.define('CorrecaoQuestao', {
         type: DataTypes.STRING, 
         allowNull: true
     }
+}, {
+    tableName: 'correcao_questao',
+    freezeTableName: true,
+    timestamps: false
 });
 
 module.exports = CorrecaoQuestao;
