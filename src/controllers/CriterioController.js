@@ -1,4 +1,5 @@
 const CriterioModel = require("../models/CriterioModel");
+const CriterioService = require("../services/CriterioService");
 
 module.exports = {
     async Listar(req, res) {
@@ -9,6 +10,18 @@ module.exports = {
             res.status(500).json({message: "Erro interno do servidor."});
         }
     }, 
+
+    async ListarCriterioPorQuestao(req, res) {
+        const id_questao = req.params.id;
+
+        try {
+            const questao = await CriterioService.ListarCriterioPorQuestao(id_questao);
+            return(res.status(201).json(questao));
+        } catch (error) {
+            res.status(500).send({message: "Erro interno do servidor."});
+        }
+    },
+
 
     async ObterItem(req, res) {
         const {id} = req.params;

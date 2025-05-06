@@ -1,4 +1,6 @@
+const { where } = require("sequelize");
 const CorrecaoQuestaoModel = require("../models/CorrecaoQuestaoModel");
+const Questao = require("../models/QuestaoModel");
 
 module.exports = {
     async Listar(req, res) {
@@ -18,6 +20,20 @@ module.exports = {
             res.status(500).json({message: "Erro interno do servidor."});
         }
     }, 
+
+    async ListarQuestoesPorCorrecao(req, res) {
+        const id = req.params.id;
+
+        try {
+            const correcao_questao = await CorrecaoQuestaoModel.findAll({where: {id_correcao: id}});
+            console.log(correcao_questao);
+            if(correcao_questao)
+                return res.status(201).json(correcao_questao);
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message: "Erro interno do servidor"});
+        }
+    },
 
     async Criar(req, res) {
         const {id_questao, id_atividade, id_criterio, id_correcao, pontuacao, descricao_correcao} = req.body;

@@ -34,8 +34,8 @@ module.exports = {
 
         try {
             const correcao = await CorrecaoModel.create({id_atividade: id_atividade, id_aluno: id_aluno, id_turma: id_turma, pontuacao: pontuacao});
-            const correcaoCriada = CorrecaoService.criarCorrecao(correcao);
-            return (res.status(201).json(correcao, correcaoCriada));
+            const correcaoCriada = await CorrecaoService.criarCorrecao(correcao);
+            return (res.status(201).json(correcao));
         } catch (error) {
             console.log(error);
             res.status(500).json({message: "Erro interno do servidor."});

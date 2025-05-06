@@ -3,6 +3,7 @@ const QuestaoModel = require("../models/QuestaoModel");
 const Atividade = require("../models/AtividadeModel");
 const CorrecaoQuestao = require("../models/CorrecaoQuestaoModel");
 const CorrecaoQuestaoController = require("./CorrecaoQuestaoController");
+const CriterioService = require("../services/CriterioService");
 
 module.exports = {
     async Listar(req, res) {
@@ -14,7 +15,7 @@ module.exports = {
         } catch (error) {
             res.status(500).send({message: "Erro interno do servidor."});
         }
-    }, 
+    },
 
     async ObterItem(req, res) {
         const {id} = req.params;

@@ -27,7 +27,7 @@ app.use('/aluno', alunoRouter);
 app.use('/turma', turmaRouter);
 app.use('/atividade-aluno', atividadeAlunoRouter);
 app.use('/atividade', atividadeRouter);
-app.use('/correcaoQuestao', correcaoQuestaoRouter);
+app.use('/correcao-questao/', correcaoQuestaoRouter);
 app.use('/correcao', correcaoRouter);
 app.use('/criterio', criterioRouter);
 app.use('/criterio-questao', criterioQuestaoRouter);

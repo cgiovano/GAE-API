@@ -19,7 +19,7 @@ const Correcao = database.define('Correcao', {
         type: DataTypes.INTEGER, 
         allowNull: false,
         references: {
-            model: 'Atividade', 
+            model: 'Aluno', 
             key: 'id'
         }
     }, 

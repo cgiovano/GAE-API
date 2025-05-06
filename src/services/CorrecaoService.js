@@ -9,8 +9,8 @@ class CorrecaoService {
         const correcoesQuestoes = await this.criarCorrecaoQuestao(await QuestaoService.listarQuestoesPorAtividade(correcao.id_atividade), correcao);
         const correcoesCriterios = await this.criarCorrecaoCriterio(correcoesQuestoes);
 
-        console.log(correcoesQuestoes);
-        console.log(correcoesCriterios);
+        //console.log(correcoesQuestoes);
+        //console.log(correcoesCriterios);
 
         return {
             correcoesQuestoes,
