@@ -29,6 +29,22 @@ module.exports = {
         }
     }, 
 
+    async ListarCorrecoesPorAtividade(req, res) {
+        const id = req.params.id;
+
+        try {
+            const correcao = await CorrecaoModel.findAll({where: {id_atividade: id}});
+
+            if(correcao)
+                return res.status(201).json(correcao);
+            else
+                return res.status(400).json({message: "Erro no processamento da requisição."});
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({message: "Erro interno do servidor."});
+        }
+    },
+
     async Criar(req, res) {
         const {id_atividade, id_aluno, id_turma, pontuacao} = req.body;
 
