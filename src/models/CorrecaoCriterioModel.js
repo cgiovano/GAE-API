@@ -30,6 +30,14 @@ const CorrecaoCriterio = database.define('CorrecaoItemCriterio', {
             model: 'Criterio',
             key: 'id'
         }
+    },
+    id_correcao: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Correcao',
+            key: 'id'
+        }
     }
 }, {
     tableName: 'correcao_criterio',

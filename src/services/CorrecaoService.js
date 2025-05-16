@@ -1,3 +1,4 @@
+const { json } = require('sequelize');
 const CorrecaoCriterio = require('../models/CorrecaoCriterioModel');
 const CorrecaoQuestao = require('../models/CorrecaoQuestaoModel');
 const CriterioService = require('../services/CriterioService');
@@ -21,7 +22,7 @@ class CorrecaoService {
     static async criarCorrecaoQuestao(questoes, correcao) {
         let res = [];
 
-        for(let questao of questoes) {
+        for (let questao of questoes) {
             try {
                 let correcaoQuestao = await CorrecaoQuestao.create({
                     id_correcao: correcao.id,
@@ -31,11 +32,11 @@ class CorrecaoService {
                 });
 
                 console.log('CorrecaoQuestao criada:', JSON.stringify(correcaoQuestao));
-    
+
                 if (!correcaoQuestao)
                     throw new Error("Não foi possível criar o item de correcao questao");
                 else
-                    res.push(correcaoQuestao);    
+                    res.push(correcaoQuestao);
             } catch (error) {
                 console.error("Erro!" + error);
             }
@@ -57,10 +58,11 @@ class CorrecaoService {
                         id_correcao_questao: correcaoQuestao.id,
                         id_item_criterio: null,
                         id_criterio: criterioQuestao.id,
+                        id_correcao: correcaoQuestao.id_correcao,
                         pontuacao: 0
                     });
 
-                    if(!correcaoCriterioQuestao)
+                    if (!correcaoCriterioQuestao)
                         throw new Error("Não foi possível criar correção para o criterio.");
                     else
                         res.push(correcaoCriterioQuestao)
@@ -72,7 +74,6 @@ class CorrecaoService {
 
         return res;
     }
-
 }
 
 module.exports = CorrecaoService;
