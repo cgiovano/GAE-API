@@ -38,6 +38,10 @@ const CorrecaoCriterio = database.define('CorrecaoItemCriterio', {
             model: 'Correcao',
             key: 'id'
         }
+    },
+    valor: {
+        type: DataTypes.FLOAT,
+        allowNull: true
     }
 }, {
     tableName: 'correcao_criterio',

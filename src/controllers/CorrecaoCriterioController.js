@@ -54,7 +54,7 @@ module.exports = {
             const correcaoCriterio = await CorrecaoCriterioModel.findByPk(id);
 
             if (correcaoCriterio) {
-                correcaoCriterio = await CorrecaoCriterioModel.create({ id_correcao_questao: id_correcao_questao, id_item_criterio: id_item_criterio, id_criterio: id_criterio, pontuacao: pontuacao });
+                correcaoCriterio = await CorrecaoCriterioModel.update({ id_correcao_questao: id_correcao_questao, id_item_criterio: id_item_criterio, id_criterio: id_criterio, pontuacao: pontuacao });
                 return (res.status(201).json({ correcaoCriterio }));
             } else {
                 return (res.status(500).json({ message: "Erro. O item não foi encontrado." }));

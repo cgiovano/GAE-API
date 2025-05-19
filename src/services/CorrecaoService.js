@@ -56,10 +56,10 @@ class CorrecaoService {
                 for (let criterioQuestao of criteriosQuestoes) {
                     let correcaoCriterioQuestao = await CorrecaoCriterio.create({
                         id_correcao_questao: correcaoQuestao.id,
-                        id_item_criterio: null,
+                        id_item_criterio: undefined,
                         id_criterio: criterioQuestao.id,
                         id_correcao: correcaoQuestao.id_correcao,
-                        pontuacao: 0
+                        valor: 0
                     });
 
                     if (!correcaoCriterioQuestao)
