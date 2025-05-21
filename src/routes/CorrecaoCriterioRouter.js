@@ -4,8 +4,9 @@ const correcaoItemCriterioController = require('../controllers/CorrecaoCriterioC
 
 router.get('/correcao/:id', correcaoItemCriterioController.ListarItensPorCorrecao);
 router.get('/correcao-questao/:id', correcaoItemCriterioController.ObterItem);
-router.post('/', correcaoItemCriterioController.Criar);
 router.put('/:id', correcaoItemCriterioController.Atualizar);
 router.delete('/:id', correcaoItemCriterioController.Deletar);
+router.post('/', correcaoItemCriterioController.Criar);
+router.put('/', correcaoItemCriterioController.AtualizarEmLista);
 
 module.exports = router;

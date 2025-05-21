@@ -11,7 +11,7 @@ module.exports = {
             return (res.status(201).json(correcaoCriterio));
         } catch (error) {
             //console.log(error);
-            res.send(500).json({ message: "erro interno do servidor." });
+            res.status(500).json({ message: "erro interno do servidor." });
         }
     },
 
@@ -61,6 +61,32 @@ module.exports = {
             }
         } catch (error) {
             res.status(500).json({ message: "Erro interno do servidor." });
+        }
+    },
+
+    async AtualizarEmLista(req, res) {
+        const dados = req.body;
+        console.log(dados);
+
+        if (Array.isArray(dados)) {
+            try {
+                const promiseAtualizacao = dados.map(item => {
+                    CorrecaoCriterioModel.update({
+                        id_correcao_questao: item.id_correcao_questao,
+                        id_item_criterio: item.id_item_criterio,
+                        id_criterio: item.id_criterio,
+                        id_correcao: item.id_correcao,
+                        valor: item.valor
+                    },
+                        { where: { id: item.id } });
+                });
+
+                await Promise.all(promiseAtualizacao);
+                return res.status(400).json(promiseAtualizacao);
+            } catch (error) {
+                console.log(erro);
+                return error;
+            }
         }
     },
 

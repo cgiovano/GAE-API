@@ -11,7 +11,7 @@ class CorrecaoService {
         const correcoesCriterios = await this.criarCorrecaoCriterio(correcoesQuestoes);
 
         //console.log(correcoesQuestoes);
-        //console.log(correcoesCriterios);
+        console.log(correcoesCriterios);
 
         return {
             correcoesQuestoes,

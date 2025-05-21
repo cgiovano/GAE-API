@@ -28,7 +28,7 @@ const Correcao = database.define('Correcao', {
         references: 'Turma', 
         referenceKey: 'id'
     },*/ 
-    pontuacao: {
+    nota: {
         type: DataTypes.FLOAT, 
         allowNull: true
     }

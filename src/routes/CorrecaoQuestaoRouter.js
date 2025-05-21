@@ -6,6 +6,7 @@ router.get('/', correcaoQuestaoController.Listar);
 router.get('/correcao/:id', correcaoQuestaoController.ListarQuestoesPorCorrecao);
 router.post('/', correcaoQuestaoController.Criar);
 router.put('/:id', correcaoQuestaoController.Atualizar);
+router.put('/', correcaoQuestaoController.AtualizarEmLista);
 router.delete('/:id', correcaoQuestaoController.Deletar);
 
 module.exports = router;
