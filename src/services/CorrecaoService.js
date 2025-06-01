@@ -27,6 +27,7 @@ class CorrecaoService {
                 let correcaoQuestao = await CorrecaoQuestao.create({
                     id_correcao: correcao.id,
                     id_questao: questao.id,
+                    escala: 0,
                     pontuacao: 0,
                     descricao_correcao: ""
                 });

@@ -41,10 +41,10 @@ module.exports = {
     }, 
 
     async Criar(req, res) {
-        const {descricao, numero_criterios, isLikert} = req.body;
+        const {descricao, numero_criterios, likert_scale} = req.body;
 
         try {
-            const criterio = await CriterioModel.create({descricao: descricao, numero_criterios: numero_criterios, likert_scale: isLikert});
+            const criterio = await CriterioModel.create({descricao: descricao, numero_criterios: numero_criterios, likert_scale: likert_scale});
             return (res.status(201).json(criterio));
         } catch (error) {
             res.status(500).json({message: "Erro interno do servidor." + error});

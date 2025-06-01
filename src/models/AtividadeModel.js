@@ -26,6 +26,10 @@ const Atividade = database.define('Atividade', {
         type: DataTypes.INTEGER,
         allowNull: true
     },
+    nota_calculada_soma: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
     numero_questoes: {
         type: DataTypes.INTEGER,
         allowNull: true

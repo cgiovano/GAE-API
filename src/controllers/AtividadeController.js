@@ -28,10 +28,10 @@ module.exports = {
     }, 
 
     async Criar(req, res) {
-        const {descricao, data_inicio, data_fim, valor, numero_questoes} = req.body;
+        const {descricao, data_inicio, data_fim, valor, nota_calculada_soma, numero_questoes} = req.body;
 
         try {
-            const atividade = await AtividadeModel.create({descricao: descricao, data_inicio: data_inicio, data_fim: data_fim, valor: valor, numero_questoes: numero_questoes});
+            const atividade = await AtividadeModel.create({descricao: descricao, data_inicio: data_inicio, data_fim: data_fim, valor: valor, nota_calculada_soma: nota_calculada_soma, numero_questoes: numero_questoes});
             return (res.status(201).json(atividade));
         } catch (error) {
             res.status(500).json({message: "Erro interno do servidor."});

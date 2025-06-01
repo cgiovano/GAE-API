@@ -28,6 +28,10 @@ const CorrecaoQuestao = database.define('CorrecaoQuestao', {
             key: 'id'
         }
     }, 
+    escala: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
     pontuacao: {
         type: DataTypes.FLOAT, 
         allowNull: true
