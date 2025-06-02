@@ -54,13 +54,13 @@ module.exports = {
 
     async Atualizar(req, res) {
         const { id } = req.params
-        const { id_questao, id_atividade, id_criterio, id_correcao, pontuacao, descricao_correcao } = req.body;
+        const { id_questao, id_atividade, id_criterio, id_correcao, escala, pontuacao, descricao_correcao } = req.body;
 
         try {
             const correcao_questao = await CorrecaoQuestaoModel.findByPk(id);
 
             if (correcao_questao) {
-                correcao_questao = await correcao_questao.update({ id_questao, id_atividade, id_criterio, id_correcao, pontuacao, descricao_correcao });
+                correcao_questao = await correcao_questao.update({ id_questao, id_atividade, id_criterio, id_correcao, escala, pontuacao, descricao_correcao });
                 return (res.status(201).json({ correcao_questao }));
             } else {
                 return (res.status(400).json({ message: "Ocorreu um erro na atualização" }));
@@ -84,6 +84,7 @@ module.exports = {
                     CorrecaoQuestaoModel.update({
                         id_correcao: item.id_correcao,
                         id_questao: item.id_questao,
+                        escala: item.escala,
                         pontuacao: item.pontuacao,
                         descricao_correcao: item.descricao_correcao
                     }, 
