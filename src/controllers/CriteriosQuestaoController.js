@@ -114,15 +114,13 @@ module.exports = {
     
                         if (criterio_questao) {
                             await criterio_questao.destroy();
-                            return (res.status(200).json({ message: "Deletado com sucesso!" }));
                         }
                     }
-    
-                    return (res.status(400).json({ message: "Erro na operação." }));
                 } catch (error) {
                     return (res.status(500).json({ message: "Erro interno do servidor" + error }));
                 }
             });
+            return (res.status(400).json({ message: "Erro na operação." }));
             
         } else {
             const { id_questao, id_criterio } = req.body;
